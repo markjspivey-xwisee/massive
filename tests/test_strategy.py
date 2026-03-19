@@ -4,8 +4,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from massive.strategy.base import Strategy, Signal, TradeAction
-from massive.strategy.examples import (
+from massive_sm.strategy.base import Strategy, Signal, TradeAction
+from massive_sm.strategy.examples import (
     SMACrossover, RSIMeanReversion, MACDStrategy, BollingerBandStrategy,
     BUILTIN_STRATEGIES,
 )

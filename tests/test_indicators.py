@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from massive import indicators as ind
+from massive_sm import indicators as ind
 
 
 @pytest.fixture

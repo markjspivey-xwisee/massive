@@ -8,8 +8,8 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from massive.config import config
-from massive.strategy.base import Position, Signal, Strategy, TradeAction
+from massive_sm.config import config
+from massive_sm.strategy.base import Position, Signal, Strategy, TradeAction
 
 
 @dataclass

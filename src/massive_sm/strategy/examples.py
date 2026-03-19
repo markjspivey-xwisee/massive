@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import pandas as pd
 
-from massive import indicators as ind
-from massive.strategy.base import Signal, Strategy, TradeAction
+from massive_sm import indicators as ind
+from massive_sm.strategy.base import Signal, Strategy, TradeAction
 
 
 class SMACrossover(Strategy):

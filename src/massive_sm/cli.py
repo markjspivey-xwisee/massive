@@ -5,12 +5,12 @@ from __future__ import annotations
 import argparse
 import sys
 
-from massive.backtester import Backtester
-from massive.data.client import MassiveClient
-from massive.optimizer import Optimizer
-from massive.scanner import Scanner
-from massive.strategy.examples import BUILTIN_STRATEGIES
-from massive.trader import Trader
+from massive_sm.backtester import Backtester
+from massive_sm.data.client import MassiveClient
+from massive_sm.optimizer import Optimizer
+from massive_sm.scanner import Scanner
+from massive_sm.strategy.examples import BUILTIN_STRATEGIES
+from massive_sm.trader import Trader
 
 
 def parse_params(param_strings: list[str] | None) -> dict:

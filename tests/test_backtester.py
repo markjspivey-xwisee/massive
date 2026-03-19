@@ -4,8 +4,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from massive.backtester import Backtester
-from massive.strategy.examples import SMACrossover, RSIMeanReversion
+from massive_sm.backtester import Backtester
+from massive_sm.strategy.examples import SMACrossover, RSIMeanReversion
 
 
 @pytest.fixture

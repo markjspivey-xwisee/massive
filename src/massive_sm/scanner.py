@@ -7,9 +7,9 @@ from typing import Type
 
 import pandas as pd
 
-from massive.backtester import Backtester
-from massive.data.client import MassiveClient
-from massive.strategy.base import Strategy, TradeAction
+from massive_sm.backtester import Backtester
+from massive_sm.data.client import MassiveClient
+from massive_sm.strategy.base import Strategy, TradeAction
 
 
 @dataclass

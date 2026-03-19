@@ -9,8 +9,8 @@ from typing import Any, Type
 
 import pandas as pd
 
-from massive.backtester import BacktestResult, Backtester
-from massive.strategy.base import Strategy
+from massive_sm.backtester import BacktestResult, Backtester
+from massive_sm.strategy.base import Strategy
 
 
 @dataclass

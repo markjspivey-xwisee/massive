@@ -11,9 +11,9 @@ from typing import Type
 
 import pandas as pd
 
-from massive.config import config
-from massive.data.client import MassiveClient
-from massive.strategy.base import Position, Signal, Strategy, TradeAction
+from massive_sm.config import config
+from massive_sm.data.client import MassiveClient
+from massive_sm.strategy.base import Position, Signal, Strategy, TradeAction
 
 
 @dataclass

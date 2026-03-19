@@ -4,8 +4,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from massive.optimizer import Optimizer
-from massive.strategy.examples import SMACrossover
+from massive_sm.optimizer import Optimizer
+from massive_sm.strategy.examples import SMACrossover
 
 
 @pytest.fixture
