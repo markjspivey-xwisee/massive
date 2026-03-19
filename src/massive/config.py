@@ -11,7 +11,9 @@ load_dotenv()
 
 @dataclass
 class Config:
-    api_key: str = field(default_factory=lambda: os.getenv("MASSIVE_API_KEY", ""))
+    api_key: str = field(
+        default_factory=lambda: os.getenv("MASSIVE_API_KEY", "") or os.getenv("MASSIVE", "")
+    )
     api_base_url: str = field(
         default_factory=lambda: os.getenv(
             "MASSIVE_API_BASE_URL", "https://api.massive.com/v1"
