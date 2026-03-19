@@ -1,0 +1,67 @@
+name: Run Strategy Manager
+
+on:
+  workflow_dispatch:
+    inputs:
+      command:
+        description: "CLI command (e.g. backtest sma_crossover AAPL --trades)"
+        required: false
+        default: "backtest sma_crossover AAPL --start 2024-01-01 --trades"
+      symbols:
+        description: "Symbols for scan/trade (comma-separated)"
+        required: false
+        default: "AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA"
+  schedule:
+    # Run daily scan at 9:00 AM ET (13:00 UTC) on weekdays
+    - cron: "0 13 * * 1-5"
+
+jobs:
+  run-strategy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -e ".[dev]"
+
+      - name: Run strategy command
+        env:
+          MASSIVE_API_KEY: ${{ secrets.MASSIVE }}
+        run: |
+          echo "══════════════════════════════════════════"
+          echo "  Massive Strategy Manager"
+          echo "══════════════════════════════════════════"
+          echo ""
+          massive-sm ${{ github.event.inputs.command || 'list' }}
+
+      - name: Daily scan (on schedule)
+        if: github.event_name == 'schedule'
+        env:
+          MASSIVE_API_KEY: ${{ secrets.MASSIVE }}
+        run: |
+          echo ""
+          echo "══════════════════════════════════════════"
+          echo "  Daily Market Scan — $(date +%Y-%m-%d)"
+          echo "══════════════════════════════════════════"
+          echo ""
+
+          echo "── SMA Crossover Scan ──"
+          massive-sm scan sma_crossover --universe ${{ github.event.inputs.symbols || 'AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,JPM,V,JNJ' }} --top 10
+          echo ""
+
+          echo "── RSI Mean Reversion Scan ──"
+          massive-sm scan rsi_mean_reversion --universe ${{ github.event.inputs.symbols || 'AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,JPM,V,JNJ' }} --top 10
+          echo ""
+
+          echo "── MACD Scan ──"
+          massive-sm scan macd --universe ${{ github.event.inputs.symbols || 'AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,JPM,V,JNJ' }} --top 10
+
+      - name: Run tests
+        run: python -m pytest tests/ -v
